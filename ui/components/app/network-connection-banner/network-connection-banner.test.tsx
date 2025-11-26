@@ -1,6 +1,5 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import { useNavigate } from 'react-router-dom';
 import { renderWithProvider } from '../../../../test/lib/render-helpers';
 
 import { useNetworkConnectionBanner } from '../../../hooks/useNetworkConnectionBanner';
@@ -24,7 +23,8 @@ jest.mock('../../../hooks/useNetworkConnectionBanner', () => ({
 
 const mockUseNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
-  useNavigate: mockUseNavigate,
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockUseNavigate,
 }));
 
 jest.mock('../../../hooks/useTheme', () => ({
