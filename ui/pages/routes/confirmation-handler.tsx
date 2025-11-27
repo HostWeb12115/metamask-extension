@@ -127,13 +127,18 @@ export const ConfirmationHandler = () => {
       checkStatusAndNavigate();
     }
 
-    if (isNotification || hasAllowedPopupRedirectApprovals) {
+    if (
+      pendingApprovals.length > 0 ||
+      isNotification ||
+      hasAllowedPopupRedirectApprovals
+    ) {
       checkStatusAndNavigate();
     }
   }, [
-    isNotification,
-    hasAllowedPopupRedirectApprovals,
     checkStatusAndNavigate,
+    hasAllowedPopupRedirectApprovals,
+    isNotification,
+    pendingApprovals,
   ]);
 
   return null;
